@@ -6,6 +6,7 @@ import { useTheme,  ThemeProvider , createTheme} from '@mui/material/styles';
 import { heIL } from '@mui/material/locale';
 import { useTranslation } from 'react-i18next';
 import i18n from "./i18n/i18n";
+import bgLocale from 'date-fns/locale/bg';
 
 // const themee = createTheme(
 //     {
@@ -26,7 +27,7 @@ const App = () => {
       i18n.changeLanguage(lng)
       document.body.dir = i18n.dir();
       theme.direction = i18n.dir();
-      theme =  heIL;
+      theme.adapterLocale =  {bgLocale};
     }
 
     return (
