@@ -1,0 +1,12 @@
+{
+    "PieChart1": "Credit Amount per Sender",
+    "PieChart2": "Debit Amount per Sender", 
+    "ID": "ID",
+    "Date": "Date",
+    "Credit Amount": "Credit Amount",
+    "Debit Amount": "Debit Amount",
+    "Sender": "Sender", 
+    "Receiver": "Receiver",
+    "To": "To",
+    "From": "From"
+}

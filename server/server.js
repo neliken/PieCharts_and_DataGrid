@@ -27,7 +27,7 @@ app.get("/getData", async (req, res) => {
 app.get("/getData/limit", async (req, res) => {
 
     try{
-        const results = await db.query("SELECT sender, credit_amount, debit_amount FROM transaction limit 100");
+        const results = await db.query("SELECT sender, credit_amount, debit_amount FROM transaction limit 50");
         res.status(200).json({
             status: "success",
             results: results.rows.length,

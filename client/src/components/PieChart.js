@@ -9,7 +9,7 @@ import { Pie } from "react-chartjs-2";
 
 // console.log(randColor());
 
-const PieChart = () => {
+const PieChart = (props) => {
     const [chartData1, setChartData1] = useState({});
     const [chartData2, setChartData2] = useState({});
     const [haveData, setHaveData] = useState(false);
@@ -33,8 +33,17 @@ const PieChart = () => {
                     ],
                 });
 
+                setChartData2({ 
+                    labels: labels,
+                    datasets: [
+                        {
+                        data: data2,
+                        }
+                    ],
+                });
+
                 let valueSum = data1.reduce((a, b) => a + b, 0);
-                let thresholdPercent = 1.5;
+                let thresholdPercent = 3;
 
                 let slices = data1.map((v, i) => ({ label: labels[i], value: v }))
                 .reduce((accumulator, currObj) => {
@@ -62,7 +71,7 @@ const PieChart = () => {
                 });
 
                 valueSum = data2.reduce((a, b) => a + b, 0);
-                thresholdPercent = 10;
+                thresholdPercent = 99;
 
                  slices = data2.map((v, i) => ({ label: labels[i], value: v }))
                 .reduce((accumulator, currObj) => {
@@ -104,19 +113,19 @@ const PieChart = () => {
             return <div>Loading...</div>;
           } else {
             return (
-                <div style={{ display:"flex", width:'20%', height:'20%', margin: 'auto', 'justify-content': 'center'}}>
+                <div style={{ display:"flex", width:'20%', height:'20%', margin: 'auto', 'justifyContent': 'center'}}>
                 <Pie data={chartData1} 
                 options = {{
                     plugins:  {
                         legend : {position :'bottom'}, 
-                        title : { display: true, text: 'Credit Amount per Sender'}
+                        title : { display: true, text: props.t('PieChart1')}
                     }
                 }} />
                  <Pie data={chartData2} 
                 options = {{
                     plugins:  {
                         legend : {position :'bottom'}, 
-                        title : { display: true, text: 'Debit Amount per Sender'}
+                        title : { display: true, text: props.t('PieChart2')}
                     }
                 }} />
                 </div>
