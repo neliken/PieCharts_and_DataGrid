@@ -29,6 +29,7 @@ const PieChart = (props) => {
                     datasets: [
                         {
                         data: data1,
+                        backgroundColor: ['#004c6d', '#1d5e7e', '#327190', '#4584a2', '#5897b4', '#6babc7', '#7ec0d9', '#92d5ec', '#a6eaff'],
                         }
                     ],
                 });
@@ -38,9 +39,11 @@ const PieChart = (props) => {
                     datasets: [
                         {
                         data: data2,
+                         backgroundColor: ['#004c6d', '#1d5e7e', '#327190', '#4584a2', '#5897b4', '#6babc7', '#7ec0d9', '#92d5ec', '#a6eaff'],
                         }
                     ],
                 });
+                
 
                 let valueSum = data1.reduce((a, b) => a + b, 0);
                 let thresholdPercent = 3;
@@ -70,33 +73,32 @@ const PieChart = (props) => {
                     ],
                 });
 
-                valueSum = data2.reduce((a, b) => a + b, 0);
-                thresholdPercent = 99;
+                // valueSum = data2.reduce((a, b) => a + b, 0);
 
-                 slices = data2.map((v, i) => ({ label: labels[i], value: v }))
-                .reduce((accumulator, currObj) => {
-                    const percent = 100 * currObj.value / valueSum;
-                    if (percent < thresholdPercent) {
-                    const others = accumulator.find(o => o.label === 'Others');
-                    if (!others) {
-                        return accumulator.concat({ label: 'Others', value: currObj.value });
-                    }
-                    others.value += currObj.value;
-                    } else {
-                    accumulator.push(currObj);
-                    }
-                    return accumulator;
-                }, []);
+                //  slices = data2.map((v, i) => ({ label: labels[i], value: v }))
+                // .reduce((accumulator, currObj) => {
+                //     const percent = 100 * currObj.value / valueSum;
+                //     if (percent < thresholdPercent) {
+                //     const others = accumulator.find(o => o.label === 'Others');
+                //     if (!others) {
+                //         return accumulator.concat({ label: 'Others', value: currObj.value });
+                //     }
+                //     others.value += currObj.value;
+                //     } else {
+                //     accumulator.push(currObj);
+                //     }
+                //     return accumulator;
+                // }, []);
 
-                setChartData2({
-                    labels: slices.map(o => o.label),
-                    datasets: [
-                        {
-                        backgroundColor: ['#004c6d', '#1d5e7e', '#327190', '#4584a2', '#5897b4', '#6babc7', '#7ec0d9', '#92d5ec', '#a6eaff'],
-                        data: slices.map(o => o.value),
-                        }
-                    ],
-                });
+                // setChartData2({
+                //     labels: slices.map(o => o.label),
+                //     datasets: [
+                //         {
+                //         backgroundColor: ['#004c6d', '#1d5e7e', '#327190', '#4584a2', '#5897b4', '#6babc7', '#7ec0d9', '#92d5ec', '#a6eaff'],
+                //         data: slices.map(o => o.value),
+                //         }
+                //     ],
+                // });
                 setHaveData(true);
 
             }catch(err){
@@ -117,14 +119,14 @@ const PieChart = (props) => {
                 <Pie data={chartData1} 
                 options = {{
                     plugins:  {
-                        legend : {position :'bottom'}, 
-                        title : { display: true, text: props.t('PieChart1')}
+                        legend : {display: false}, 
+                        title : { display: true, text: props.t('PieChart1')},
                     }
                 }} />
                  <Pie data={chartData2} 
                 options = {{
                     plugins:  {
-                        legend : {position :'bottom'}, 
+                        legend : {display: false}, 
                         title : { display: true, text: props.t('PieChart2')}
                     }
                 }} />

@@ -1,0 +1,38 @@
+version: "3"
+services:
+  postgres:
+    image: "postgres:15.0-alpine"
+    environment:
+      - POSTGRES_PASSWORD=pswd4321
+    ports:
+      - "5432:5432"
+    # volumes:
+    #   - postgres://data/postgres
+    restart: unless-stopped
+  server:
+    depends_on:
+      - postgres
+    build:
+      dockerfile: Dockerfile
+      context: "./server"
+    volumes:
+      - /app/node_modules
+      - ./server:/app
+    environment:
+      - PGUSER=neliken
+      - PGHOST=localhost
+      - PGDATABASE=postgres
+      - PGPASSWORD=pswd4321
+      - PGPORT=5432
+    ports:
+      - "4003:4000"
+  client:
+    build:
+      dockerfile: Dockerfile
+      context: ./client
+    ports:
+      - "4002:3000"
+    volumes:
+      - /app/node_modules
+      - ./client:/app
+

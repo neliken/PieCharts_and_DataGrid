@@ -56,7 +56,7 @@ const Data = (props) =>{
         }}
         >
 
-        <LocalizationProvider dateAdapter={AdapterDateFns}>
+        <LocalizationProvider dateAdapter={AdapterDateFns} >
             <DatePicker 
             label={props.t('From')}
             minDate='10/02/2021'
