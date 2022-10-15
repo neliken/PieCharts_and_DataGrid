@@ -1,6 +1,10 @@
 ## Available Scripts
-Go in the client directory 
 
+Go in the client folder, then in the server folder and run 
+### npm install 
+    - This installs all required packages from the package.json
+
+Go in the client directory 
 There you can run:
 
 ### `npm start`
