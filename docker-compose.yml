@@ -1,15 +1,20 @@
 version: "3"
 services:
   postgres:
+    container_name: postgres
     image: "postgres:15.0-alpine"
     environment:
-      - POSTGRES_PASSWORD=pswd4321
+      - POSTGRES_DATABASE=${PGDATABASE}
+      - POSTGRES_USER=${PGUSER}
+      - POSTGRES_PASSWORD=${PGPASSWORD}
     ports:
-      - "5432:5432"
-    # volumes:
-    #   - postgres://data/postgres
+      - "${PGPORT}:${PGPORT}"
+    volumes:
+        - ./docker_postgres_init.sql:/docker-entrypoint-initdb.d/docker_postgres_init.sql
     restart: unless-stopped
   server:
+    container_name: server
+    image: server
     depends_on:
       - postgres
     build:
@@ -19,20 +24,23 @@ services:
       - /app/node_modules
       - ./server:/app
     environment:
-      - PGUSER=neliken
-      - PGHOST=localhost
-      - PGDATABASE=postgres
-      - PGPASSWORD=pswd4321
-      - PGPORT=5432
+      - PGUSER=${PGUSER}
+      - PGHOST=${PGHOST}
+      - PGDATABASE=${PGDATABASE}
+      - PGPASSWORD=${PGPASSWORD}
+      - PGPORT=${PGPORT}
     ports:
-      - "4003:4000"
+      - "4000:4000"
+    links:
+      - client
   client:
+    container_name: client
+    image: client
     build:
       dockerfile: Dockerfile
       context: ./client
     ports:
-      - "4002:3000"
+      - "3000:3000"
     volumes:
       - /app/node_modules
       - ./client:/app
-
