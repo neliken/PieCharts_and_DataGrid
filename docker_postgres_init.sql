@@ -7,7 +7,7 @@ CREATE TABLE IF NOT EXISTS transaction(
     Receiver VARCHAR(100)
 );
 
-insert into transaction (Transaction_date, Debit_amount, Credit_amount, Sender, Receiver) values ('2022-07-04', 299, 850, 'Brigitte Conws', 'Stephana Teeney');
+insert into transaction (Transaction_date, Debit_amount, Credit_amount, Sender, Receiver) values ('2022-07-04', 300, 733, 'Brigitte Conws', 'Stephana Teeney');
 insert into transaction (Transaction_date, Debit_amount, Credit_amount, Sender, Receiver) values ('2022-05-21', 637, 148, 'Abigale Hurlin', 'Spenser Relf');
 insert into transaction (Transaction_date, Debit_amount, Credit_amount, Sender, Receiver) values ('2022-04-25', 341, 167, 'Sylas McGonigal', 'Ariella Downse');
 insert into transaction (Transaction_date, Debit_amount, Credit_amount, Sender, Receiver) values ('2022-07-14', 343, 817, 'Tatiania Rainton', 'Cate MacDuffie');
@@ -1002,3 +1002,8 @@ insert into transaction (Transaction_date, Debit_amount, Credit_amount, Sender, 
 insert into transaction (Transaction_date, Debit_amount, Credit_amount, Sender, Receiver) values ('2022-07-22', 518, 650, 'Meta Engall', 'Elsworth Trytsman');
 insert into transaction (Transaction_date, Debit_amount, Credit_amount, Sender, Receiver) values ('2021-11-17', 887, 845, 'Gretchen Hrishchenko', 'Petr Whannel');
 insert into transaction (Transaction_date, Debit_amount, Credit_amount, Sender, Receiver) values ('2022-01-18', 901, 813, 'Devlen Eyre', 'Scotty Boydell');
+insert into transaction (Transaction_date, Debit_amount, Credit_amount, Sender, Receiver) values ('2022-07-04', 299, 850, 'Brigitte Conws', 'Stephana Teeney');
+insert into transaction (Transaction_date, Debit_amount, Credit_amount, Sender, Receiver) values ('2022-05-21', 637, 148, 'Abigale Hurlin', 'Spenser Relf');
+insert into transaction (Transaction_date, Debit_amount, Credit_amount, Sender, Receiver) values ('2022-04-25', 341, 167, 'Sylas McGonigal', 'Ariella Downse');
+insert into transaction (Transaction_date, Debit_amount, Credit_amount, Sender, Receiver) values ('2022-07-14', 343, 817, 'Tatiania Rainton', 'Cate MacDuffie');
+insert into transaction (Transaction_date, Debit_amount, Credit_amount, Sender, Receiver) values ('2021-10-25', 883, 340, 'Marlin Coultard', 'Trent Carmichael');
