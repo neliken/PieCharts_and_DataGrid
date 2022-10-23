@@ -20,12 +20,13 @@ const Data = (props) =>{
                 const response = await axios.get("http://localhost:4000/getData");
                 const data = response.data.data.transactions;
                 
-                const filterdData = data.filter((transaction) => {
-                    const data = new Date(transaction.transaction_date)
-                    return data.getTime() >= startDate.getTime() && data.getTime() <= endDate.getTime();
-                })
+                // const filterdData = data.filter((transaction) => {
+                //     const data = new Date(transaction.transaction_date)
+                //     return data.getTime() >= startDate.getTime() && data.getTime() <= endDate.getTime();
+                // })
 
-                setTransactions(filterdData);
+                // setTransactions(filterdData);
+                setTransactions(data);
                 
             }catch(err){
                 console.log(err);
@@ -37,7 +38,7 @@ const Data = (props) =>{
     
 
     const columns = useMemo(() => [
-        {field:'transaction_id', headerName: props.t("ID"), width:80},
+        {field:'id', headerName: props.t("ID"), width:80},
         {field:'transaction_date', headerName: props.t("Date"), width:200, type: 'date', renderCell: params => moment(params.row.transaction_date).format('HH:MM DD/MM/YYYY')},
         {field:'credit_amount', headerName: props.t("Credit Amount"), width:170, sortable: true, filterable: true, type: 'number'},
         {field:'debit_amount', headerName: props.t("Debit Amount"), width:170, type: 'number'},
@@ -85,7 +86,7 @@ const Data = (props) =>{
             <DataGrid
             columns={columns}
             rows={transactions}
-            getRowId={row=>row.transaction_id}
+            getRowId={row=>row.id}
             // localeText={heIL.components.MuiDataGrid.defaultProps.localeText}
             />
         </Box>

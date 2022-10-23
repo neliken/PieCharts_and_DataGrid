@@ -4,7 +4,14 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon server.js"
+    "start": "nodemon server.js",
+    "make-model": "npx sequelize-cli model:generate --name transaction --attributes transaction_date:date,debit_amount:numeric,credit_amount:numeric,sender:string,receiver:string", 
+    "migrate:up": "npx sequelize-cli db:migrate", 
+    "make-seed": "npx sequelize-cli seed:generate --name seeding-transaction",
+    "seed:up": "npx sequelize-cli db:seed:all",
+    "seed:undo": "npx sequelize-cli db:seed:undo:all",
+    "migrate:down": "npx sequelize-cli db:migrate:undo",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "",
@@ -13,7 +20,10 @@
     "cors": "^2.8.5",
     "dotenv": "^16.0.3",
     "express": "^4.18.1",
+    "node": "^18.11.0",
     "nodemon": "^2.0.20",
-    "pg": "^8.8.0"
+    "pg": "^8.8.0",
+    "pg-hstore": "^2.3.4",
+    "sequelize": "^6.25.3"
   }
 }

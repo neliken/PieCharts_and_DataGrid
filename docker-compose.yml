@@ -8,9 +8,9 @@ services:
       - POSTGRES_USER=${PGUSER}
       - POSTGRES_PASSWORD=${PGPASSWORD}
     ports:
-      - "${PGPORT}:${PGPORT}"
+      - "5433:${PGPORT}"
     volumes:
-        - ./docker_postgres_init.sql:/docker-entrypoint-initdb.d/docker_postgres_init.sql
+      - postgres-app-data:/data
     restart: unless-stopped
   server:
     container_name: server
@@ -20,9 +20,9 @@ services:
     build:
       dockerfile: Dockerfile
       context: "./server"
-    volumes:
-      - /app/node_modules
-      - ./server:/app
+    # volumes:
+    #   - /app/node_modules
+    #   - ./server:/app
     environment:
       - PGUSER=${PGUSER}
       - PGHOST=${PGHOST}
@@ -41,6 +41,8 @@ services:
       context: ./client
     ports:
       - "3000:3000"
-    volumes:
-      - /app/node_modules
-      - ./client:/app
+    # volumes:
+    #   - /app/node_modules
+    #   - ./client:/app
+volumes:
+    postgres-app-data:

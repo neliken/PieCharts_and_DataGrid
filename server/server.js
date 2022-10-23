@@ -1,7 +1,7 @@
 require("dotenv").config();
 const express = require("express");
 const cors = require('cors')
-const db = require('./db')
+const db = require('./db');
 
 
 const app = express();
@@ -30,7 +30,7 @@ app.use(cors({
 app.get("/getData", async (req, res) => {
 
     try{
-        const results = await db.query("SELECT * FROM transaction");
+        const results = await db.query("SELECT * FROM transactions");
         res.status(200).json({
             status: "success",
             results: results.rows.length,
@@ -46,7 +46,7 @@ app.get("/getData", async (req, res) => {
 app.get("/getData/limit", async (req, res) => {
 
     try{
-        const results = await db.query("SELECT sender, credit_amount, debit_amount FROM transaction limit 50");
+        const results = await db.query("SELECT sender, credit_amount, debit_amount FROM transactions limit 50");
         res.status(200).json({
             status: "success",
             results: results.rows.length,

@@ -1,20 +1,26 @@
 ## Available Scripts
 
-Go in the client folder, then in the server folder and run 
+Go in the client folder and run:
 ### npm install 
     - This installs all required packages from the package.json
+
+Then do the same for the server folder, to install all the dependencies.
 
 Go in the client directory 
 There you can run:
 
 ### `npm start`
 
-Runs the app in the development mode.\
+Runs the React app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 gi 
 The page will reload when you make changes.\
 You may also see any lint errors in the console.
 
+### `npm run start:dev`
+Runs the app in the development mode.\
+Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+gi 
 
 ### `npm test`
 
