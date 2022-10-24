@@ -4,8 +4,5 @@ RUN chown -R node:node /app
 USER node
 COPY --chown=node:node . ./
 RUN npm i
-COPY --chown=node:node ./docker-entrypoint.sh /docker-entrypoint.sh
-RUN chmod +x /docker-entrypoint.sh
-RUN /docker-entrypoint.sh
-# ENTRYPOINT ["/docker-entrypoint.sh"]
+ENV NODE_ENV docker
 CMD ["npm", "start"]

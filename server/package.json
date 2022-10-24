@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon server.js",
-    "make-model": "npx sequelize-cli model:generate --name transaction --attributes transaction_date:date,debit_amount:numeric,credit_amount:numeric,sender:string,receiver:string", 
+    "start": "npm run migrate:up && nodemon server.js",
+    "make-model": "npx sequelize-cli model:generate --name transactions --attributes transaction_date:date,debit_amount:numeric,credit_amount:numeric,sender:string,receiver:string", 
     "migrate:up": "npx sequelize-cli db:migrate", 
     "make-seed": "npx sequelize-cli seed:generate --name seeding-transaction",
     "seed:up": "npx sequelize-cli db:seed:all",

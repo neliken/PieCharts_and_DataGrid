@@ -10,22 +10,6 @@ app.use(cors({
     origin: '*',
 }));
 
-// app.use((req, res, next) => {
-//     // const origin = req.get('origin');
-  
-//     // TODO Add origin validation
-//     res.header('Access-Control-Allow-Origin', '*');
-//     res.header('Access-Control-Allow-Credentials', true);
-//     res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
-//     res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization, Cache-Control, Pragma');
-  
-//     // intercept OPTIONS method
-//     if (req.method === 'OPTIONS') {
-//       res.sendStatus(204);
-//     } else {
-//       next();
-//     }
-//   });
 
 app.get("/getData", async (req, res) => {
 
@@ -43,10 +27,10 @@ app.get("/getData", async (req, res) => {
     }
 });
 
-app.get("/getData/limit", async (req, res) => {
+app.get("/getData/pieChart", async (req, res) => {
 
     try{
-        const results = await db.query("SELECT sender, credit_amount, debit_amount FROM transactions limit 50");
+        const results = await db.query('select sender, sum(debit_amount) AS "sum_debit", sum(credit_amount) As "sum_credit" from transactions group by sender');
         res.status(200).json({
             status: "success",
             results: results.rows.length,

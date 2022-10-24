@@ -4,13 +4,13 @@ services:
     container_name: postgres
     image: "postgres:15.0-alpine"
     environment:
-      - POSTGRES_DATABASE=${PGDATABASE}
+      - POSTGRES_DB=${PGDATABASE}
       - POSTGRES_USER=${PGUSER}
       - POSTGRES_PASSWORD=${PGPASSWORD}
     ports:
-      - "5433:${PGPORT}"
-    volumes:
-      - postgres-app-data:/data
+      - "${PGPORT}:${PGPORT}"
+    # volumes:
+    #   - ./server/config:/postgres
     restart: unless-stopped
   server:
     container_name: server
@@ -20,9 +20,6 @@ services:
     build:
       dockerfile: Dockerfile
       context: "./server"
-    # volumes:
-    #   - /app/node_modules
-    #   - ./server:/app
     environment:
       - PGUSER=${PGUSER}
       - PGHOST=${PGHOST}
@@ -41,8 +38,3 @@ services:
       context: ./client
     ports:
       - "3000:3000"
-    # volumes:
-    #   - /app/node_modules
-    #   - ./client:/app
-volumes:
-    postgres-app-data:

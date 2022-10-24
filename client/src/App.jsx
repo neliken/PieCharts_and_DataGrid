@@ -3,11 +3,8 @@ import Data from './components/Data';
 import PieChart from './components/PieChart';
 import { Box } from '@mui/material';
 import { useTheme,  ThemeProvider } from '@mui/material/styles';
-// import { heIL } from '@mui/material/locale';
 import { useTranslation } from 'react-i18next';
 import i18n from "./i18n/i18n";
-// import { heIL } from '@mui/material/locale';
-
 
 const App = () => {
     const { t, i18n } = useTranslation();

@@ -10,9 +10,8 @@ import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns'
 
 const Data = (props) =>{
     const [transactions, setTransactions] = useState("");
-    const [startDate, setStartDate] = useState(new Date('10/02/2021'));  
-    const [endDate, setEndDate] = useState(new Date('10/01/2022'));  
-    // console.log(startDate,  endDate);
+    const [startDate, setStartDate] = useState(new Date('01/01/2022'));  
+    const [endDate, setEndDate] = useState(new Date());  
     
     useEffect(() => {
         const fetchData = async () => {
@@ -20,13 +19,12 @@ const Data = (props) =>{
                 const response = await axios.get("http://localhost:4000/getData");
                 const data = response.data.data.transactions;
                 
-                // const filterdData = data.filter((transaction) => {
-                //     const data = new Date(transaction.transaction_date)
-                //     return data.getTime() >= startDate.getTime() && data.getTime() <= endDate.getTime();
-                // })
+                const filterdData = data.filter((transaction) => {
+                    const data = new Date(transaction.transaction_date)
+                    return data.getTime() >= startDate.getTime() && data.getTime() <= endDate.getTime();
+                })
 
-                // setTransactions(filterdData);
-                setTransactions(data);
+                setTransactions(filterdData);
                 
             }catch(err){
                 console.log(err);
@@ -52,42 +50,42 @@ const Data = (props) =>{
             height:700,
             width:'60%',
             margin:"auto",
-            // textAlign: 'center',
             mt:3, mb:3,
         }}
         >
 
         <LocalizationProvider dateAdapter={AdapterDateFns} >
             <DatePicker 
-            label={props.t('From')}
-            minDate='10/02/2021'
-            maxDate='10/01/2022'
-            value={startDate} 
-            // onChange={(newDate) => setStartDate(moment(newDate).format("MM/DD/YYYY"))} 
-            onChange={(newDate) => setStartDate(newDate)} 
-            renderInput={(params) => (
-                <TextField {...params} />
-            )}>
+                label={props.t('From')}
+                minDate='10/02/2021'
+                maxDate='10/01/2022'
+                value={startDate} 
+                // onChange={(newDate) => setStartDate(moment(newDate).format("MM/DD/YYYY"))} 
+                onChange={(newDate) => setStartDate(newDate)} 
+                renderInput={(params) => (
+                    <TextField {...params} />
+                )}>
             </DatePicker>
         </LocalizationProvider>
 
         <LocalizationProvider dateAdapter={AdapterDateFns}>
             <DatePicker 
-            label={props.t('To')}
-            maxDate='10/01/2022'
-            value={endDate} 
-            onChange={(newDate) => setEndDate(newDate)} 
-            renderInput={(params) => (
-                <TextField {...params} />
-            )}>
+                label={props.t('To')}
+                value={endDate} 
+                minDate={startDate}
+                maxDate={new Date()}
+                onChange={(newDate) => setEndDate(newDate)} 
+                renderInput={(params) => (
+                    <TextField {...params} />
+                )}>
             </DatePicker>
         </LocalizationProvider>
         
             <DataGrid
-            columns={columns}
-            rows={transactions}
-            getRowId={row=>row.id}
-            // localeText={heIL.components.MuiDataGrid.defaultProps.localeText}
+                columns={columns}
+                rows={transactions}
+                getRowId={row=>row.id}
+                // localeText={heIL.components.MuiDataGrid.defaultProps.localeText}
             />
         </Box>
     );
